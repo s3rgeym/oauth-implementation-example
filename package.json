@@ -1,5 +1,5 @@
 {
-  "name": "idgtl-api",
+  "name": "_",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -9,7 +9,7 @@
     "build": "babel src --out-dir dist",
     "serve": "node dist/index.js"
   },
-  "author": "Sergey Mishustin <s.mishustin@i-dgtl.ru> and AUTHORS",
+  "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.5.5",
