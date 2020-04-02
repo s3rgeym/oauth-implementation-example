@@ -1,0 +1,15 @@
+extends layouts/base
+
+block vars
+  - var title = 'Log In'
+
+block content
+  .form: form(method='post')
+    .form-group
+      label Username:
+        input(name='username', autofocus)
+    .form-group
+      label Password:
+        input(name='password', type='password')
+    .form-group
+      input(type='submit', value='Login')

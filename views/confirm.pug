@@ -1,0 +1,14 @@
+extends layouts/base
+
+block vars
+  - var title = 'Confirm'
+
+block content
+  p.module-oauth-server-p.module-oauth-server-p-username #{user.username}
+  p.module-oauth-server-p.module-oauth-server-p-client #{client.name} is requesting access to your account
+  p.module-oauth-server-p.module-oauth-server-p-question Do you approve?
+
+  form(action='./decision' method='POST').module-oauth-server-form
+    input(name='transaction_id' type='hidden' value=`${transactionId}`)
+    input(type='submit' value="Allow" id="allow").module-oauth-server-input.module-oauth-server-input-allow
+    input(type='submit' value="Deny" id="deny" name='cancel').module-oauth-server-input.module-oauth-server-input-deny

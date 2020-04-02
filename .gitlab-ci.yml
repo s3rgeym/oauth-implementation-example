@@ -1,0 +1,32 @@
+image: docker:latest
+stages:
+  - build-dev
+  - build-prod
+  - deploy
+build:
+  stage: build-dev
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker build . -t $CI_REGISTRY_IMAGE
+    - docker push $CI_REGISTRY_IMAGE
+build-tag:
+  stage: build-prod
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker tag $CI_REGISTRY_IMAGE:latest $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
+  only:
+    - tags
+#deploy:
+#  stage: deploy
+#  before_script:
+#    - apk add curl
+#  script:
+#    - export KUBECONFIG="/etc/kube/config"
+#    - mkdir -p /etc/kube && echo ${kube_config} | base64 -d > ${KUBECONFIG}
+#    - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && chmod +x ./kubectl
+#    - ./kubectl apply -f deploy-kubernetes.yml --namespace=services
+#    - ./kubectl set env deployment rng-backend --env="LAST_UPDATE=$(date +%d.%m.%y-%H:%M:%S)" --namespace=services && sleep 20
+#    - ./kubectl set env deployment rng-frontend --env="LAST_UPDATE=$(date +%d.%m.%y-%H:%M:%S)" --namespace=services
+#    - ./kubectl rollout status deployment/rng-frontend --namespace=services
+

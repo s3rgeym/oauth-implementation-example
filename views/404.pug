@@ -1,0 +1,8 @@
+extends layouts/base
+
+block vars
+  - var title = 'Not Found'
+
+block content
+  p The requested URL #{url} was not found on this server.
+  a(href='/') Home.
