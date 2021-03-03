@@ -33,7 +33,7 @@
     "passport-oauth2-client-password": "^0.1.2",
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.3",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "sequelize": "^5.10.2"
   }
 }
